@@ -10,7 +10,7 @@ import createSagaMiddleware from 'redux-saga';
 
 // Import sagas and reducers
 import rootSaga from './redux/sagas/index';
-import rootReducer from './redux/reducers/root.reducer';
+import rootReducer from './redux/reducers/index';
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
@@ -18,7 +18,7 @@ const sagaMiddleware = createSagaMiddleware();
 // Create one store that all components can use
 const storeInstance = createStore(
     // Combined reducers
-    rootReducer(),
+    rootReducer,
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
 );
