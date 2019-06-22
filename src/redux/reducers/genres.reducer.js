@@ -1,0 +1,13 @@
+// // src/redux/reducers/genres.reducer.js
+
+// Used to store the movie genres
+const genres = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_TAGS':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+export default genres;
