@@ -12,7 +12,7 @@ class Home extends Component {
     render() {
         return (
             <div className="App">
-                <MovieList />
+                <MovieList history={this.props.history}/>
             </div>
         );
     }
