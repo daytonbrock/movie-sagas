@@ -10,7 +10,7 @@ class MovieList extends Component {
                 direction="row"
                 justify="space-evenly"
                 alignItems="flex-start">
-                    {this.props.ReduxState.movies.map(movie => {
+                    {this.props.reduxState.movies.map(movie => {
                         return (
                             <MovieListItem movie={movie} history={this.props.history}/>
                         );
@@ -20,8 +20,8 @@ class MovieList extends Component {
     }
 }
 
-const mapReduxStateToProps = ReduxState => ({
-    ReduxState
+const mapReduxStateToProps = reduxState => ({
+    reduxState
 });
 
 export default connect(mapReduxStateToProps)(MovieList);

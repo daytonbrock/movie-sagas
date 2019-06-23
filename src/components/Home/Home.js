@@ -18,6 +18,6 @@ class Home extends Component {
     }
 }
 
-const mapReduxStateToProps = ReduxState => ({ReduxState});
+const mapReduxStateToProps = reduxState => ({reduxState});
 
 export default connect(mapReduxStateToProps)(Home);

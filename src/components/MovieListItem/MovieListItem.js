@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 class MovieListItem extends Component {
 
     handleClick = () => {
+        this.props.dispatch({type: 'FETCH_ONE_MOVIE', payload: this.props.movie.id});
         this.props.history.push('/details');
     }
     
@@ -19,8 +20,4 @@ class MovieListItem extends Component {
     }
 }
 
-const mapReduxStateToProps = ReduxState => ({
-    ReduxState
-});
-
-export default connect(mapReduxStateToProps)(MovieListItem);
+export default connect()(MovieListItem);

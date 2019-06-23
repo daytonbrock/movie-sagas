@@ -6,9 +6,16 @@ class Details extends Component {
         return (
             <div>
                 <p>display details for one movie here</p>
+                <pre>
+                    {JSON.stringify(this.props.reduxState.oneMovie, null, 2)}
+                </pre>
             </div>
         );
     }
 }
 
-export default connect()(Details);
+const mapReduxStateToProps = reduxState => ({
+    reduxState
+});
+
+export default connect(mapReduxStateToProps)(Details);
