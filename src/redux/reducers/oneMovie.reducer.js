@@ -1,4 +1,4 @@
-// // src/redux/reducers/movies.reducer.js
+// // src/redux/reducers/oneMovie.reducer.js
 
 const initialMovie = {
     "id": 0,
@@ -7,14 +7,14 @@ const initialMovie = {
     "description": ""
 }
 
-// Used to store movies returned from the server
-const movies = (state = [initialMovie], action) => {
+// Used to store one movie at a time for details page
+const oneMovie = (state = [initialMovie], action) => {
     switch (action.type) {
-        case 'SET_MOVIES':
+        case 'SET_ONE_MOVIE':
             return action.payload;
         default:
             return state;
     }
 }
 
-export default movies;
+export default oneMovie;
