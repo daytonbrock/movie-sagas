@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 
 // GET all genres for one movie
 router.get('/:id', (req, res) => {
-    const queryText = `SELECT "genres"."name", "genres"."id" FROM "movies"
+    const queryText = `SELECT "genres"."name", "movie_genre"."id" FROM "movies"
                         JOIN "movie_genre" ON "movie_id"="movies"."id"
                         JOIN "genres" ON "genre_id"="genres"."id"
                         WHERE "movie_id"=$1;`
@@ -45,5 +45,6 @@ router.post('/', (req, res) => {
     }); // end pool query
 }); // end post
 
+// DELETE movie / genre relation by ID
 
 module.exports = router;
