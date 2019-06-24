@@ -7,10 +7,11 @@ import TextField from '@material-ui/core/TextField';
 class Edit extends Component {
 
     state = {
-        title: '',
-        description: '',
+        title: null,
+        description: null,
     }
 
+    // will fetch movie and genre relations on load
     componentDidMount() {
         const movieId = this.props.match.params.movieId;
         this.props.dispatch({
@@ -23,15 +24,41 @@ class Edit extends Component {
         });
     }
 
+    // called to update movie by id on "save" click
     updateMovie = () => {
-        console.log('save changes');
+        // get title and description
+        let title = this.state.title;
+        let description = this.state.description
+        // if null, set to original value
+        if (title === null) {
+            title = this.props.reduxState.oneMovie.title;
+        }
+        if (description === null) {
+            description = this.props.reduxState.oneMovie.description;
+        }
+        // update movie with new title/description or preserved title/description
+        this.dispatchUpdate( title, description );
+        // navigate to details 
+        this.props.history.push(`/details/${this.props.match.params.movieId}`)
+    }
+
+    // called on update
+    dispatchUpdate = ( title, description ) => {
         this.props.dispatch({
             type: 'UPDATE_MOVIE',
             payload: {
-                title: this.state.title,
-                description: this.state.description,
+                title: title,
+                description: description,
                 id: this.props.match.params.movieId
             }
+        });
+    }
+
+    // handle change on text fields
+    handleChangeFor = (propertyName) => (event) => {
+        this.setState({
+            ...this.state,
+            [propertyName]: event.target.value,
         });
     }
 
@@ -51,6 +78,7 @@ class Edit extends Component {
                     </Grid>
                     <Grid item xs={6}>
                         <TextField
+                            onChange={this.handleChangeFor('title')}
                             fullWidth margin="normal"
                             multiline rowsMax="20"
                             label="Title"
@@ -69,6 +97,7 @@ class Edit extends Component {
                         </Grid>
                         <Grid item xs={6}>
                             <TextField
+                                onChange={this.handleChangeFor('description')}
                                 fullWidth margin="normal"
                                 multiline rowsMax="20"
                                 label="Description"
