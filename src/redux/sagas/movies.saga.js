@@ -31,6 +31,7 @@ function* updateMovie(action) {
     try {
         // axios PUT request
         yield call(axios.put, '/api/movies', action.payload);
+        // fetch updated movie
         yield dispatch({
             type: 'FETCH_ONE_MOVIE',
             payload: action.payload.id

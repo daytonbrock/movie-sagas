@@ -35,7 +35,7 @@ router.get('/:id', (req, res) => {
 // POST new movie / genre relation
 router.post('/', (req, res) => {
     const queryText = `INSERT INTO "movie_genre" ("movie_id", "genre_id")
-                        VALUES ('$1', '$2');`;
+                        VALUES ($1, $2);`;
     pool.query(queryText, [req.body.movie_id, req.body.genre_id])
     .then(() => {
         res.sendStatus(201);

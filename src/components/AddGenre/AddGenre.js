@@ -13,10 +13,17 @@ class AddGenre extends Component {
 
     // on click add movie / genre relation
     addGenre = () => {
-        console.log({
-            movie_id: this.props.movieId,
-            genre_id: this.state.genre_id,
-        })
+        if(this.state.genre_id === ''){
+            alert('please select a genre to add.')
+        } else {
+           this.props.dispatch({
+                type: 'ADD_GENRE',
+                payload: {
+                    movie_id: this.props.movieId,
+                    genre_id: this.state.genre_id,
+                }
+            }); 
+        } 
     }
 
     // handle change on select

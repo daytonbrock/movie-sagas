@@ -32,10 +32,26 @@ function* fetchOneMovieGenres(action) {
     }
 }
 
+// post new movie / genre relation to server
+function* postNewGenreRelation(action) {
+    try {
+        // axios POST request
+        yield call(axios.post, '/api/genres', action.payload);
+        // fetch updated genres for one movie
+        yield dispatch({
+            type: 'FETCH_ONE_MOVIE_GENRES',
+            payload: action.payload.movie_id
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 // watches for actions
 function* watcherSaga() {
     yield takeEvery('FETCH_ONE_MOVIE_GENRES', fetchOneMovieGenres);
     yield takeEvery('FETCH_GENRES', fetchGenres);
+    yield takeEvery('ADD_GENRE', postNewGenreRelation);
 }
 
 export default watcherSaga;
