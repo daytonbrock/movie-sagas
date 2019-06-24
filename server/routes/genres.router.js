@@ -32,5 +32,18 @@ router.get('/:id', (req, res) => {
     }); // end pool query
 }); // end get
 
+// POST new movie / genre relation
+router.post('/', (req, res) => {
+    const queryText = `INSERT INTO "movie_genre" ("movie_id", "genre_id")
+                        VALUES ('$1', '$2');`;
+    pool.query(queryText, [req.body.movie_id, req.body.genre_id])
+    .then(() => {
+        res.sendStatus(201);
+    }).catch(error => {
+        console.log('error with INSERT on /api/genres/ route:', error);
+        res.sendStatus(500);
+    }); // end pool query
+}); // end post
+
 
 module.exports = router;

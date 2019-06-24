@@ -11,7 +11,7 @@ class MovieListItem extends Component {
     
     render() {
         return (
-            <Grid item xs={2}>
+            <Grid item xs={3}>
                 <img src={this.props.movie.poster} 
                     alt={this.props.movie.title} 
                     onClick={this.handleClick}/>

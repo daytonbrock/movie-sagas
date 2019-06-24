@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import AddGenre from '../AddGenre/AddGenre';
 
 class Edit extends Component {
 
@@ -87,7 +88,7 @@ class Edit extends Component {
                         />
                     </Grid>
                     <Grid item xs={3}>
-                        <h4>Genres:</h4>
+                        <AddGenre movieId={this.props.match.params.movieId}/>
                     </Grid>
                 </Grid>
                 <Grid container>
@@ -106,6 +107,7 @@ class Edit extends Component {
                             />
                         </Grid>
                         <Grid item xs={3}>
+                            <h4>Genres:</h4>
                             {this.props.reduxState.oneMovieGenres.map(genre => <div key={genre.id}>{genre.name}</div>)}
                         </Grid>
                 </Grid>
