@@ -29,5 +29,19 @@ router.get('/details/:id', (req, res) => {
     }); // end pool query
 }); // end get
 
+// PUT to update title / description of movie by ID
+router.put('/', (req, res) => {
+    const queryText = `UPDATE "movies"
+                    SET "title"=$1, "description"=$2
+                    WHERE "id"=$3;`;
+    pool.query(queryText, [req.body.title, req.body.description, req.body.id])
+    .then(() => {
+        res.sendStatus(200);
+    }).catch(error => {
+        console.log('error with UPDATE on /api/movies/ route:', error);
+        res.sendStatus(500);
+    }); // end pool query
+}); // end put
+
 
 module.exports = router;

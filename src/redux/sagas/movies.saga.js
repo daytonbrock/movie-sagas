@@ -27,10 +27,24 @@ function* fetchOneMovie(action) {
     }
 }
 
+function* updateMovie(action) {
+    try {
+        // axios PUT request
+        yield call(axios.put, '/api/movies', action.payload);
+        yield dispatch({
+            type: 'FETCH_ONE_MOVIE',
+            payload: action.payload.id
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 // watches for actions
 function* watcherSaga() {
     yield takeEvery('FETCH_MOVIES', fetchMovies);
     yield takeEvery('FETCH_ONE_MOVIE', fetchOneMovie);
+    yield takeEvery('UPDATE_MOVIE', updateMovie);
 }
 
 export default watcherSaga;

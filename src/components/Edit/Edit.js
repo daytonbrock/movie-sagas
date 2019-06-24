@@ -6,6 +6,11 @@ import TextField from '@material-ui/core/TextField';
 
 class Edit extends Component {
 
+    state = {
+        title: '',
+        description: '',
+    }
+
     componentDidMount() {
         const movieId = this.props.match.params.movieId;
         this.props.dispatch({
@@ -20,6 +25,14 @@ class Edit extends Component {
 
     updateMovie = () => {
         console.log('save changes');
+        this.props.dispatch({
+            type: 'UPDATE_MOVIE',
+            payload: {
+                title: this.state.title,
+                description: this.state.description,
+                id: this.props.match.params.movieId
+            }
+        });
     }
 
     render() {
@@ -55,7 +68,6 @@ class Edit extends Component {
                                 alt={this.props.reduxState.oneMovie.title}/>
                         </Grid>
                         <Grid item xs={6}>
-                            {/* <p>{this.props.reduxState.oneMovie.description}</p> */}
                             <TextField
                                 fullWidth margin="normal"
                                 multiline rowsMax="20"
