@@ -6,7 +6,7 @@ class MovieListItem extends Component {
 
     handleClick = () => {
         this.props.dispatch({type: 'FETCH_ONE_MOVIE', payload: this.props.movie.id});
-        this.props.history.push('/details');
+        this.props.history.push('/details/' + this.props.movie.id);
     }
     
     render() {

@@ -12,7 +12,7 @@ class MovieList extends Component {
                 alignItems="flex-start">
                     {this.props.reduxState.movies.map(movie => {
                         return (
-                            <MovieListItem movie={movie} history={this.props.history}/>
+                            <MovieListItem key={movie.id} movie={movie} history={this.props.history}/>
                         );
                     })}
             </Grid>

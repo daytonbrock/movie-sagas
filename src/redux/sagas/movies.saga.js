@@ -1,5 +1,5 @@
 // // src/redux/sagas/movies.saga.js
-import { call, put as dispatch, takeEvery, actionChannel } from 'redux-saga/effects';
+import { call, put as dispatch, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* fetchMovies() {
@@ -20,7 +20,7 @@ function* fetchOneMovie(action) {
         // send response to Redux store
         yield dispatch({
             type: 'SET_ONE_MOVIE',
-            payload: movieResponse.data
+            payload: movieResponse.data[0]
         });
     } catch (error) {
         console.log(error);
