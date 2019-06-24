@@ -46,5 +46,16 @@ router.post('/', (req, res) => {
 }); // end post
 
 // DELETE movie / genre relation by ID
+router.delete('/:id', (req, res) => {
+    const queryText = `DELETE FROM "movie_genre" WHERE "id"=$1;`;
+    console.log(req.body)
+    pool.query(queryText, [req.params.id])
+    .then(() => {
+        res.sendStatus(200);
+    }).catch(error => {
+        console.log('error with DELETE on /api/genres/ route:', error);
+        res.sendStatus(500);
+    }); // end pool query
+})
 
 module.exports = router;

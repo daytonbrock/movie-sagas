@@ -108,7 +108,7 @@ class Edit extends Component {
                             />
                         </Grid>
                         <Grid item xs={3}>
-                            <GenreList />
+                            <GenreList movieId={this.props.match.params.movieId}/>
                         </Grid>
                 </Grid>
             </div>

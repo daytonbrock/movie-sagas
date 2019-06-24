@@ -47,7 +47,7 @@ class AddGenre extends Component {
                 <Select value={this.state.name} onChange={this.handleChange}>
                     {this.props.reduxState.genres.map( genre => {
                         return (
-                            <MenuItem key={genre.id} id={genre.id} value={genre.name}>{genre.name}</MenuItem>
+                            <MenuItem key={genre.id} value={genre.name}>{genre.name}</MenuItem>
                         );
                     })}
                 </Select>

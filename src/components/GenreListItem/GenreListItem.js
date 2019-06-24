@@ -5,20 +5,27 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 class GenreListItem extends Component {
 
-
+    // on click, delete movie / genre relation by id of relation
+    handleDelete = () => {
+        this.props.dispatch({
+            type: 'DELETE_GENRE',
+            payload: {
+                relation_id: this.props.genre.id,
+                movie_id: this.props.movieId
+            },
+        });
+    }
 
     render() {
         return (
             <div>
                 {this.props.genre.name}
-                <IconButton aria-label="Delete">
-                    <DeleteIcon />
+                <IconButton aria-label="Delete" onClick={this.handleDelete}>
+                    <DeleteIcon/>
                 </IconButton>
             </div>
         );
     }
 }
 
-const mapReduxStateToProps = (reduxState) => ({reduxState});
-
-export default connect(mapReduxStateToProps)(GenreListItem);
+export default connect()(GenreListItem);

@@ -47,11 +47,28 @@ function* postNewGenreRelation(action) {
     }
 }
 
+// delete movie / genre relation from database
+function* deleteMovieGenreRelation(action) {
+    try {
+        console.log(action.payload)
+        // axios DELETE request
+        yield call(axios.delete, `/api/genres/${action.payload.relation_id}`);
+        // fetch updated genres for one movie
+        yield dispatch({
+            type: 'FETCH_ONE_MOVIE_GENRES',
+            payload: action.payload.movie_id,
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 // watches for actions
 function* watcherSaga() {
     yield takeEvery('FETCH_ONE_MOVIE_GENRES', fetchOneMovieGenres);
     yield takeEvery('FETCH_GENRES', fetchGenres);
     yield takeEvery('ADD_GENRE', postNewGenreRelation);
+    yield takeEvery('DELETE_GENRE', deleteMovieGenreRelation);
 }
 
 export default watcherSaga;
